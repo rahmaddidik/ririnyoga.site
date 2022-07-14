@@ -1,10 +1,38 @@
-import { Box } from "@mantine/core";
+import { ActionIcon, Box, Button, Text, Title } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Icon } from "../src/components/atoms";
 import { generateSxStyles, theme } from "../styles/theme.config";
+import {
+  DeviceSpeaker,
+  DeviceSpeakerOff,
+  Map,
+  PlayerPause,
+  PlayerPlay,
+} from "tabler-icons-react";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const Home: NextPage = () => {
+  const [play, setPlay] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const { name } = router.query;
+  const mobile = useMediaQuery(
+    `(max-width: ${theme.breakpoints?.md}px)`,
+    false
+  );
+
+  const openInvitation = () => {
+    setOpen(true);
+    setPlay(true);
+    setMuted(false);
+  };
+
   return (
     <>
       <Head>
@@ -15,6 +43,23 @@ const Home: NextPage = () => {
 
       <Box sx={styles.container}>
         <Box sx={styles.hero}>
+          <Box sx={styles.heroContent}>
+            <Title
+              order={mobile ? 2 : 1}
+              sx={{ marginBottom: 28, color: theme.colors?.title }}
+            >
+              Ririn & Yoga
+            </Title>
+            <Text color="textDark" size={mobile ? "sm" : "md"}>
+              Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
+              pasangan-pasangan untukmu dari jenismu sendiri, agar kamu
+              cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di
+              antaramu rasa kasih dan sayang.
+            </Text>
+            <Text color="textDark" weight={700} size={mobile ? "sm" : "md"}>
+              Surah Ar Rum Ayat 21
+            </Text>
+          </Box>
           <Box sx={styles.heroAwan}>
             <Icon.Awan />
           </Box>
@@ -31,6 +76,144 @@ const Home: NextPage = () => {
             <Icon.Character />
           </Box>
         </Box>
+        {!open && (
+          <Box sx={styles.cover}>
+            <Box sx={styles.coverContent}>
+              {!name && (
+                <Box sx={[styles.coverLabel, { paddingBottom: 16 }]}>
+                  <Text size={mobile ? "lg" : "xl"} color="title" weight={700}>
+                    Maaf, Anda tidak diundang
+                  </Text>
+                </Box>
+              )}
+              {name && (
+                <>
+                  <Box sx={styles.coverLabel}>
+                    <Text size={mobile ? "sm" : "md"}>
+                      Kepada Yth Bpk/Ibu/Sdr/i:
+                    </Text>
+                    <Text
+                      size={mobile ? "lg" : "xl"}
+                      color="title"
+                      weight={700}
+                    >
+                      {name}
+                    </Text>
+                    <Text size={mobile ? "sm" : "md"}>di tempat</Text>
+                  </Box>
+                  <Button radius="xl" onClick={openInvitation}>
+                    BUKA UNDANGAN
+                  </Button>
+                </>
+              )}
+            </Box>
+          </Box>
+        )}
+        {open && (
+          <Box sx={styles.main}>
+            <Box sx={styles.mainAwan}>
+              <Icon.AwanSection />
+            </Box>
+            <Box sx={styles.mainContent}>
+              <Box sx={styles.mainBismillah}>
+                <Icon.Bismillah />
+              </Box>
+              <Text size={mobile ? "xs" : "md"} sx={styles.mainTextOpening}>
+                Maha suci Allah SWT yang telah menciptakan makhluk-Nya
+                berpasang-pasangan. Ya Allah, perkenankanlah kami merangkai
+                kasih sayang yang Kau ciptakan di antara putra-putri kami:
+              </Text>
+              <Box sx={styles.mainPhoto}>
+                <Icon.PhotoRirin />
+              </Box>
+              <Title order={mobile ? 3 : 2} sx={styles.mainTitle}>
+                Ririn Isnawati, S.T
+              </Title>
+              <Text size={mobile ? "xs" : "sm"}>
+                Putri Bapak Sutarjo dan Ibu Rukmini
+              </Text>
+              <Text size={mobile ? "xs" : "sm"}>
+                Blali RT 005, Seloharjo, Pundong, Bantul, Yogyakarta
+              </Text>
+              <Box sx={styles.mainLove}>
+                <Icon.Love />
+              </Box>
+              <Box sx={styles.mainPhoto}>
+                <Icon.PhotoYoga />
+              </Box>
+              <Title order={mobile ? 3 : 2} sx={styles.mainTitle}>
+                Yoga Chariansya Pratama, S.T
+              </Title>
+              <Text size={mobile ? "xs" : "sm"}>
+                Putra Bapak Imam Chamdani dan Ibu Isriani
+              </Text>
+              <Text size={mobile ? "xs" : "sm"}>
+                Tanah Merah B, Perbaungan, Serdang Bedagai, Sumatra Utara
+              </Text>
+              <Box sx={styles.mainEvent}>
+                <Box sx={styles.mainEventItem}>
+                  <Text
+                    size="xl"
+                    sx={{ marginBottom: 4, color: theme.colors?.title }}
+                  >
+                    <strong>AKAD</strong> NIKAH
+                  </Text>
+                  <Text size={mobile ? "sm" : "md"}>
+                    Ahad Legi, 24 Juli 2022
+                  </Text>
+                  <Text size={mobile ? "sm" : "md"}>09.00 WIB</Text>
+                  <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
+                </Box>
+                <Box sx={styles.mainEventItem}>
+                  <Text
+                    size="xl"
+                    sx={{ marginBottom: 4, color: theme.colors?.title }}
+                  >
+                    <strong>RESEPSI</strong> PERNIKAHAN
+                  </Text>
+                  <Text size={mobile ? "sm" : "md"}>
+                    Ahad Legi, 24 Juli 2022
+                  </Text>
+                  <Text size={mobile ? "sm" : "md"}>
+                    13.00-14.00 WIB & 14.00-15.00 WIB
+                  </Text>
+                  <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
+                </Box>
+              </Box>
+              <Box sx={styles.fab}>
+                <Button
+                  component="a"
+                  href="https://www.google.com/maps/dir//Mebel+Rahmad+Jati,+Blali+RT005,+Karangasem,+Seloharjo,+Kec.+Pundong,+Kabupaten+Bantul,+Daerah+Istimewa+Yogyakarta+55771/@-7.9724074,110.3427968,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x2e7babd7fea00de7:0xc6a122fd8ba490d3!2m2!1d110.3341464!2d-7.9872266!3e0"
+                  leftIcon={<Map size={14} />}
+                  radius="xl"
+                  size="md"
+                >
+                  Petunjuk Arah
+                </Button>
+              </Box>
+            </Box>
+            <Box sx={styles.mainControl}>
+              <ActionIcon onClick={() => setPlay(!play)}>
+                {play ? <PlayerPause size={24} /> : <PlayerPlay size={24} />}
+              </ActionIcon>
+              <ActionIcon onClick={() => setMuted(!muted)}>
+                {muted ? (
+                  <DeviceSpeakerOff size={24} />
+                ) : (
+                  <DeviceSpeaker size={24} />
+                )}
+              </ActionIcon>
+            </Box>
+          </Box>
+        )}
+        <Box sx={{ display: "none" }}>
+          <ReactPlayer
+            muted={muted}
+            playing={play}
+            loop
+            url="https://www.youtube.com/watch?v=1WCIrw85zbQ"
+          />
+        </Box>
       </Box>
     </>
   );
@@ -46,6 +229,7 @@ const styles = generateSxStyles({
     maxWidth: 1280,
     overflow: "hidden",
     margin: "auto",
+    position: "relative",
   },
   hero: {
     position: "relative",
@@ -72,9 +256,14 @@ const styles = generateSxStyles({
     position: "absolute",
     display: "flex",
     justifyContent: "flex-end",
-    width: "100%",
+    height: 522,
     maxWidth: 1024,
     bottom: -50,
+    right: 128,
+    [`@media (max-width: ${theme.breakpoints?.md}px)`]: {
+      height: "60vh",
+      right: 0,
+    },
   },
   heroPlane: {
     position: "absolute",
@@ -87,6 +276,99 @@ const styles = generateSxStyles({
     display: "flex",
     justifyContent: "center",
     bottom: 100,
+  },
+  heroContent: {
+    maxWidth: 650,
+    textAlign: "center",
+    paddingTop: "10vh",
+    paddingLeft: 24,
+    paddingRight: 24,
+    zIndex: 1,
+  },
+  main: {
+    minHeight: "100vh",
+    position: "relative",
+    background: theme.colors?.backgroundLight,
+  },
+  mainAwan: {
+    height: 300,
+    overflow: "hidden",
+    position: "absolute",
+    background: theme.colors?.background,
+  },
+  mainContent: {
+    position: "relative",
+    padding: 24,
+    paddingTop: 100,
+    paddingBottom: 48,
+    textAlign: "center",
+    width: "100%",
+  },
+  mainBismillah: {
+    height: 28,
+    marginBottom: 16,
+  },
+  mainTextOpening: {
+    maxWidth: 600,
+    margin: "auto",
+    marginBottom: 32,
+  },
+  mainPhoto: {
+    width: 90,
+    margin: "auto",
+  },
+  mainTitle: {
+    marginBottom: 16,
+    color: theme.colors?.title,
+  },
+  mainLove: {
+    width: 60,
+    margin: "auto",
+    marginTop: 24,
+    marginBottom: 24,
+  },
+  mainEvent: {
+    paddingTop: 96,
+    paddingBottom: 48,
+  },
+  mainEventItem: {
+    marginBottom: 48,
+  },
+  mainControl: {
+    position: "fixed",
+    top: 0,
+    right: 0,
+    zIndex: 1,
+  },
+  fab: {
+    position: "fixed",
+    right: 24,
+    bottom: 24,
+  },
+  cover: {
+    position: "fixed",
+    height: "100vh",
+    width: "100%",
+    zIndex: 1,
+    top: 0,
+    left: 0,
+    background: "#00000050",
+    display: "flex",
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
+  coverLabel: {
+    padding: 16,
+    paddingBottom: 32,
+    borderRadius: 8,
+    background: "#FFFFFF",
+    width: 300,
+    textAlign: "center",
+    marginBottom: -24,
+  },
+  coverContent: {
+    marginBottom: "15vh",
+    textAlign: "center",
   },
 });
 //#endregion
