@@ -97,7 +97,7 @@ const Home: NextPage = () => {
                       color="title"
                       weight={700}
                     >
-                      {name}
+                      {(name as string).replace(/([A-Z])/g, " $1").trim()}
                     </Text>
                     <Text size={mobile ? "sm" : "md"}>di tempat</Text>
                   </Box>
