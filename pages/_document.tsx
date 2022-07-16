@@ -15,7 +15,7 @@ export default class _Document extends Document {
             rel="stylesheet"
           />
           <link
-            href="http://fonts.cdnfonts.com/css/brittany-signature"
+            href="https://fonts.cdnfonts.com/css/brittany-signature"
             rel="stylesheet"
           />
         </Head>
