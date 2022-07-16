@@ -233,8 +233,8 @@ const Home: NextPage = () => {
                 <Text size={mobile ? "sm" : "md"}>
                   Tanah Merah B, Perbaungan, Serdang Bedagai, Sumatra Utara
                 </Text>
-                <Box sx={styles.mainEvent}>
-                  <Box sx={styles.mainEventItem}>
+                <Grid justify="center" sx={styles.mainEvent}>
+                  <Grid.Col sx={styles.mainEventItem}>
                     <Text
                       size="xl"
                       sx={{ marginBottom: 4, color: theme.colors?.title }}
@@ -246,8 +246,8 @@ const Home: NextPage = () => {
                     </Text>
                     <Text size={mobile ? "sm" : "md"}>08.00 WIB</Text>
                     <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
-                  </Box>
-                  <Box sx={styles.mainEventItem}>
+                  </Grid.Col>
+                  <Grid.Col sx={styles.mainEventItem}>
                     <Text size="xl" color="title" mb={4}>
                       <strong>RESEPSI</strong> PERNIKAHAN
                     </Text>
@@ -258,8 +258,8 @@ const Home: NextPage = () => {
                       13.00-14.00 WIB & 14.00-15.00 WIB
                     </Text>
                     <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
-                  </Box>
-                </Box>
+                  </Grid.Col>
+                </Grid>
               </Box>
             </Box>
             <Box sx={styles.gallery}>
@@ -332,7 +332,16 @@ const Home: NextPage = () => {
                 </Grid>
               </Box>
             </Box>
-            <Box sx={styles.footer} />
+            <Box sx={styles.footer}>
+              <Image
+                src="/images/footer.png"
+                alt=""
+                height="100%"
+                width="100%"
+                layout="fill"
+                objectFit="cover"
+              />
+            </Box>
             <Box sx={styles.control}>
               <ActionIcon onClick={() => setPlay(!play)}>
                 {play ? <PlayerPause size={24} /> : <PlayerPlay size={24} />}
@@ -561,8 +570,13 @@ const styles = generateSxStyles({
     maxWidth: 500,
   },
   footer: {
-    height: 150,
+    position: "relative",
+    height: 300,
     background: theme.colors?.backgroundLight,
+
+    [`@media (max-width: ${theme.breakpoints?.md}px)`]: {
+      height: 150,
+    },
   },
 });
 //#endregion
