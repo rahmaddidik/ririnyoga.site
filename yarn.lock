@@ -1829,6 +1829,11 @@ react-is@^16.13.1, react-is@^16.7.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-photo-album@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.npmjs.org/react-photo-album/-/react-photo-album-1.15.0.tgz#e5056ecc55ef9c4c36d4a938ffd8424dd629b82e"
+  integrity sha512-j9uGkrBUAjZ5VAy45RyMYrfCuh/nH5KMzj2Au0j/kdz0v6iKqIqxMjYptRL6C9JnTLOkFuKsFSxdQ6B2FdH+fw==
+
 react-player@^2.10.1:
   version "2.10.1"
   resolved "https://registry.npmjs.org/react-player/-/react-player-2.10.1.tgz#f2ee3ec31393d7042f727737545414b951ffc7e4"
@@ -2264,3 +2269,8 @@ yallist@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
+
+yet-another-react-lightbox@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.npmjs.org/yet-another-react-lightbox/-/yet-another-react-lightbox-1.10.0.tgz#e0284561599cec4cb1e56645a86d115048a40977"
+  integrity sha512-/rBXMtzldGmOEODmtZjERqeiwBQIRZsmj2r/w+3tHYOBTOPKNj0AzkyULAB1ER1p/UUAa2tJOu0/Ho8UEFQlpw==

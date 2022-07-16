@@ -1,16 +1,8 @@
-import {
-  ActionIcon,
-  AspectRatio,
-  Box,
-  Button,
-  SimpleGrid,
-  Text,
-  Title,
-} from "@mantine/core";
+import { ActionIcon, Box, Button, Text, Title } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Icon } from "../src/components/atoms";
+import { Icon, NextImage } from "../src/components/atoms";
 import { generateSxStyles, theme } from "../styles/theme.config";
 import {
   DeviceSpeaker,
@@ -20,9 +12,19 @@ import {
   PlayerPlay,
 } from "tabler-icons-react";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import PhotoAlbum, { Photo } from "react-photo-album";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+// import optional lightbox plugins
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const Home: NextPage = () => {
@@ -41,6 +43,76 @@ const Home: NextPage = () => {
     setPlay(true);
     setMuted(false);
   };
+
+  const photos: Photo[] = [
+    {
+      src: "/images/gallery_01.jpg",
+      width: 1024,
+      height: 768,
+    },
+    {
+      src: "/images/gallery_02.jpg",
+      width: 1024,
+      height: 768,
+    },
+    {
+      src: "/images/gallery_03.jpg",
+      width: 1024,
+      height: 768,
+    },
+    {
+      src: "/images/gallery_04.jpg",
+      width: 1024,
+      height: 768,
+    },
+    {
+      src: "/images/gallery_05.jpg",
+      width: 1024,
+      height: 768,
+    },
+    {
+      src: "/images/gallery_06.jpg",
+      width: 576,
+      height: 1024,
+    },
+    {
+      src: "/images/gallery_07.jpg",
+      width: 576,
+      height: 1024,
+    },
+    {
+      src: "/images/gallery_08.jpg",
+      width: 576,
+      height: 1024,
+    },
+    {
+      src: "/images/gallery_09.jpg",
+      width: 576,
+      height: 1024,
+    },
+    {
+      src: "/images/gallery_10.jpg",
+      width: 576,
+      height: 1024,
+    },
+    {
+      src: "/images/gallery_11.jpg",
+      width: 1024,
+      height: 576,
+    },
+    {
+      src: "/images/gallery_12.jpg",
+      width: 1024,
+      height: 576,
+    },
+  ];
+
+  const [index, setIndex] = useState(-1);
+  const slides = photos.map(({ src, width, height }) => ({
+    src,
+    width,
+    height,
+  }));
 
   return (
     <>
@@ -197,113 +269,21 @@ const Home: NextPage = () => {
                 <Text size="xl" color="title" mb={48}>
                   <strong>ALBUM</strong> FOTO
                 </Text>
-                <SimpleGrid
-                  my={48}
-                  cols={4}
-                  spacing="lg"
-                  breakpoints={[
-                    { maxWidth: "lg", cols: 4, spacing: "lg" },
-                    { maxWidth: "md", cols: 3, spacing: "md" },
-                    { maxWidth: "sm", cols: 2, spacing: "sm" },
-                  ]}
-                >
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_01.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_02.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_03.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_04.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_05.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_06.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_07.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_08.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_09.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_10.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_11.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
-                    <Image
-                      src="/images/gallery_12.jpg"
-                      alt=""
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </AspectRatio>
-                </SimpleGrid>
+                <PhotoAlbum
+                  layout="columns"
+                  photos={photos}
+                  renderPhoto={NextImage}
+                  columns={mobile ? 3 : 4}
+                  onClick={(_event, _photo, index) => setIndex(index)}
+                />
+                <Lightbox
+                  slides={slides}
+                  open={index >= 0}
+                  index={index}
+                  close={() => setIndex(-1)}
+                  // enable optional lightbox plugins
+                  plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+                />
               </Box>
             </Box>
             <Box sx={styles.control}>
@@ -495,6 +475,9 @@ const styles = generateSxStyles({
     width: 300,
     textAlign: "center",
     marginBottom: -24,
+    [`@media (min-width: ${theme.breakpoints?.md}px)`]: {
+      width: "auto",
+    },
   },
   coverContent: {
     marginBottom: "15vh",
@@ -514,7 +497,7 @@ const styles = generateSxStyles({
     position: "relative",
     padding: 16,
     paddingTop: 150,
-    paddingBottom: 100,
+    paddingBottom: 150,
     textAlign: "center",
     maxWidth: 900,
     margin: "auto",
