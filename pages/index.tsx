@@ -12,7 +12,7 @@ import {
   PlayerPlay,
 } from "tabler-icons-react";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import PhotoAlbum, { Photo } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
@@ -25,15 +25,91 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Image from "next/image";
+import { Countdown } from "../src/components/molecules";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  const { name } = router.query;
   const [play, setPlay] = useState(false);
   const [muted, setMuted] = useState(true);
   const [open, setOpen] = useState(false);
-  const router = useRouter();
-  const { name } = router.query;
+  const [state, setState] = useState({
+    seconds: 0,
+    hours: 0,
+    minutes: 0,
+    days: 0,
+    isItBday: false,
+  });
+
+  const day = 24;
+  const month = 7;
+
+  // get current time
+  const currentTime = new Date();
+  // get current year
+  const currentYear = currentTime.getFullYear();
+
+  // Getting the Birthday in Data Object
+  // WE subtract 1 from momnth ; Months start from 0 in Date Object
+  // Bithday Boolean
+  const isItBday =
+    currentTime.getDate() === day && currentTime.getMonth() === month - 1;
+
+  useEffect(() => {
+    setInterval(() => {
+      const countdown = () => {
+        // Getting the Current Date
+        const dateAtm = new Date();
+
+        // if the Birthday has passed
+        // then set the Birthday countdown for next year
+        let weddingDay = new Date(currentYear, month - 1, day);
+        if (dateAtm > weddingDay) {
+          weddingDay = new Date(currentYear + 1, month - 1, day);
+        } else if (dateAtm.getFullYear() === weddingDay.getFullYear() + 1) {
+          weddingDay = new Date(currentYear, month - 1, day);
+        }
+
+        // Getitng Current Time
+        const currentTime = dateAtm.getTime();
+        // Getting Birthdays Time
+        const birthdayTime = weddingDay.getTime();
+
+        // Time remaining for the Birthday
+        const timeRemaining = birthdayTime - currentTime;
+
+        let seconds = Math.floor(timeRemaining / 1000);
+        let minutes = Math.floor(seconds / 60);
+        let hours = Math.floor(minutes / 60);
+        let days = Math.floor(hours / 24);
+
+        seconds %= 60;
+        minutes %= 60;
+        hours %= 24;
+
+        // Setting States
+        setState((prevState) => ({
+          ...prevState,
+          seconds,
+          minutes,
+          hours,
+          days,
+          isItBday,
+        }));
+      };
+      if (!isItBday) {
+        countdown();
+      } else {
+        setState((prevState) => ({
+          ...prevState,
+          isItBday: true,
+        }));
+      }
+    }, 1000);
+  }, [currentYear, day, isItBday, month]);
+
   const mobile = useMediaQuery(
     `(max-width: ${theme.breakpoints?.md}px)`,
     false
@@ -157,6 +233,11 @@ const Home: NextPage = () => {
           <Box sx={styles.heroCharacter}>
             <Icon.Character />
           </Box>
+          {open && (
+            <Box sx={styles.heroCountdown}>
+              <Countdown countdownData={state} name="Ririn and Yoga" />
+            </Box>
+          )}
         </Box>
         {!open && (
           <Box sx={styles.cover}>
@@ -336,8 +417,6 @@ const Home: NextPage = () => {
               <Image
                 src="/images/footer.png"
                 alt=""
-                height="100%"
-                width="100%"
                 layout="fill"
                 objectFit="cover"
               />
@@ -446,6 +525,10 @@ const styles = generateSxStyles({
     paddingRight: 24,
     zIndex: 1,
   },
+  heroCountdown: {
+    position: "absolute",
+    bottom: "20vh",
+  },
   main: {
     minHeight: "100vh",
     position: "relative",
@@ -553,7 +636,6 @@ const styles = generateSxStyles({
     position: "relative",
     padding: 16,
     paddingTop: 300,
-    paddingBottom: 150,
     textAlign: "center",
     maxWidth: 900,
     margin: "auto",
