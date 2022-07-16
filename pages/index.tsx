@@ -1,4 +1,12 @@
-import { ActionIcon, Box, Button, Text, Title } from "@mantine/core";
+import {
+  ActionIcon,
+  AspectRatio,
+  Box,
+  Button,
+  SimpleGrid,
+  Text,
+  Title,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -14,6 +22,7 @@ import {
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const Home: NextPage = () => {
@@ -110,89 +119,194 @@ const Home: NextPage = () => {
           </Box>
         )}
         {open && (
-          <Box sx={styles.main}>
-            <Box sx={styles.mainAwan}>
-              <Icon.AwanSection />
+          <>
+            <Box sx={styles.main}>
+              <Box sx={styles.mainAwan}>
+                <Icon.AwanSection />
+              </Box>
+              <Box sx={styles.mainContent}>
+                <Box sx={styles.mainBismillah}>
+                  <Icon.Bismillah />
+                </Box>
+                <Text size={mobile ? "xs" : "md"} sx={styles.mainTextOpening}>
+                  Maha suci Allah SWT yang telah menciptakan makhluk-Nya
+                  berpasang-pasangan. Ya Allah, perkenankanlah kami merangkai
+                  kasih sayang yang Kau ciptakan di antara putra-putri kami:
+                </Text>
+                <Box sx={styles.mainPhoto}>
+                  <Icon.PhotoRirin />
+                </Box>
+                <Title order={mobile ? 3 : 2} sx={styles.mainTitle}>
+                  Ririn Isnawati, S.T
+                </Title>
+                <Text size={mobile ? "sm" : "md"}>
+                  Putri Bapak Sutarjo dan Ibu Rukmini
+                </Text>
+                <Text size={mobile ? "sm" : "md"}>
+                  Blali RT 005, Seloharjo, Pundong, Bantul, Yogyakarta
+                </Text>
+                <Box sx={styles.mainLove}>
+                  <Icon.Love />
+                </Box>
+                <Box sx={styles.mainPhoto}>
+                  <Icon.PhotoYoga />
+                </Box>
+                <Title order={mobile ? 3 : 2} sx={styles.mainTitle}>
+                  Yoga Chariansya Pratama, S.T
+                </Title>
+                <Text size={mobile ? "sm" : "md"}>
+                  Putra Bapak Imam Chamdani dan Ibu Isriani
+                </Text>
+                <Text size={mobile ? "sm" : "md"}>
+                  Tanah Merah B, Perbaungan, Serdang Bedagai, Sumatra Utara
+                </Text>
+                <Box sx={styles.mainEvent}>
+                  <Box sx={styles.mainEventItem}>
+                    <Text
+                      size="xl"
+                      sx={{ marginBottom: 4, color: theme.colors?.title }}
+                    >
+                      <strong>AKAD</strong> NIKAH
+                    </Text>
+                    <Text size={mobile ? "sm" : "md"}>
+                      Ahad Legi, 24 Juli 2022
+                    </Text>
+                    <Text size={mobile ? "sm" : "md"}>09.00 WIB</Text>
+                    <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
+                  </Box>
+                  <Box sx={styles.mainEventItem}>
+                    <Text size="xl" color="title" mb={4}>
+                      <strong>RESEPSI</strong> PERNIKAHAN
+                    </Text>
+                    <Text size={mobile ? "sm" : "md"}>
+                      Ahad Legi, 24 Juli 2022
+                    </Text>
+                    <Text size={mobile ? "sm" : "md"}>
+                      13.00-14.00 WIB & 14.00-15.00 WIB
+                    </Text>
+                    <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
+                  </Box>
+                </Box>
+              </Box>
             </Box>
-            <Box sx={styles.mainContent}>
-              <Box sx={styles.mainBismillah}>
-                <Icon.Bismillah />
+            <Box sx={styles.gallery}>
+              <Box sx={styles.galleryAwan}>
+                <Icon.AwanSection />
               </Box>
-              <Text size={mobile ? "xs" : "md"} sx={styles.mainTextOpening}>
-                Maha suci Allah SWT yang telah menciptakan makhluk-Nya
-                berpasang-pasangan. Ya Allah, perkenankanlah kami merangkai
-                kasih sayang yang Kau ciptakan di antara putra-putri kami:
-              </Text>
-              <Box sx={styles.mainPhoto}>
-                <Icon.PhotoRirin />
-              </Box>
-              <Title order={mobile ? 3 : 2} sx={styles.mainTitle}>
-                Ririn Isnawati, S.T
-              </Title>
-              <Text size={mobile ? "xs" : "sm"}>
-                Putri Bapak Sutarjo dan Ibu Rukmini
-              </Text>
-              <Text size={mobile ? "xs" : "sm"}>
-                Blali RT 005, Seloharjo, Pundong, Bantul, Yogyakarta
-              </Text>
-              <Box sx={styles.mainLove}>
-                <Icon.Love />
-              </Box>
-              <Box sx={styles.mainPhoto}>
-                <Icon.PhotoYoga />
-              </Box>
-              <Title order={mobile ? 3 : 2} sx={styles.mainTitle}>
-                Yoga Chariansya Pratama, S.T
-              </Title>
-              <Text size={mobile ? "xs" : "sm"}>
-                Putra Bapak Imam Chamdani dan Ibu Isriani
-              </Text>
-              <Text size={mobile ? "xs" : "sm"}>
-                Tanah Merah B, Perbaungan, Serdang Bedagai, Sumatra Utara
-              </Text>
-              <Box sx={styles.mainEvent}>
-                <Box sx={styles.mainEventItem}>
-                  <Text
-                    size="xl"
-                    sx={{ marginBottom: 4, color: theme.colors?.title }}
-                  >
-                    <strong>AKAD</strong> NIKAH
-                  </Text>
-                  <Text size={mobile ? "sm" : "md"}>
-                    Ahad Legi, 24 Juli 2022
-                  </Text>
-                  <Text size={mobile ? "sm" : "md"}>09.00 WIB</Text>
-                  <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
-                </Box>
-                <Box sx={styles.mainEventItem}>
-                  <Text
-                    size="xl"
-                    sx={{ marginBottom: 4, color: theme.colors?.title }}
-                  >
-                    <strong>RESEPSI</strong> PERNIKAHAN
-                  </Text>
-                  <Text size={mobile ? "sm" : "md"}>
-                    Ahad Legi, 24 Juli 2022
-                  </Text>
-                  <Text size={mobile ? "sm" : "md"}>
-                    13.00-14.00 WIB & 14.00-15.00 WIB
-                  </Text>
-                  <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
-                </Box>
-              </Box>
-              <Box sx={styles.fab}>
-                <Button
-                  component="a"
-                  href="https://www.google.com/maps/dir//Mebel+Rahmad+Jati,+Blali+RT005,+Karangasem,+Seloharjo,+Kec.+Pundong,+Kabupaten+Bantul,+Daerah+Istimewa+Yogyakarta+55771/@-7.9724074,110.3427968,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x2e7babd7fea00de7:0xc6a122fd8ba490d3!2m2!1d110.3341464!2d-7.9872266!3e0"
-                  leftIcon={<Map size={14} />}
-                  radius="xl"
-                  size="md"
+              <Box sx={styles.galleryContent}>
+                <Text size="xl" color="title" mb={48}>
+                  <strong>ALBUM</strong> FOTO
+                </Text>
+                <SimpleGrid
+                  my={48}
+                  cols={4}
+                  spacing="lg"
+                  breakpoints={[
+                    { maxWidth: "lg", cols: 4, spacing: "lg" },
+                    { maxWidth: "md", cols: 3, spacing: "md" },
+                    { maxWidth: "sm", cols: 2, spacing: "sm" },
+                  ]}
                 >
-                  Petunjuk Arah
-                </Button>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_01.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_02.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_03.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_04.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_05.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_06.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_07.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_08.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_09.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_10.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_11.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <AspectRatio ratio={4 / 3} sx={styles.galleryItem}>
+                    <Image
+                      src="/images/gallery_12.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                </SimpleGrid>
               </Box>
             </Box>
-            <Box sx={styles.mainControl}>
+            <Box sx={styles.control}>
               <ActionIcon onClick={() => setPlay(!play)}>
                 {play ? <PlayerPause size={24} /> : <PlayerPlay size={24} />}
               </ActionIcon>
@@ -204,7 +318,18 @@ const Home: NextPage = () => {
                 )}
               </ActionIcon>
             </Box>
-          </Box>
+            <Box sx={styles.fab}>
+              <Button
+                component="a"
+                href="https://www.google.com/maps/dir//Mebel+Rahmad+Jati,+Blali+RT005,+Karangasem,+Seloharjo,+Kec.+Pundong,+Kabupaten+Bantul,+Daerah+Istimewa+Yogyakarta+55771/@-7.9724074,110.3427968,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x2e7babd7fea00de7:0xc6a122fd8ba490d3!2m2!1d110.3341464!2d-7.9872266!3e0"
+                leftIcon={<Map size={14} />}
+                radius="xl"
+                size="md"
+              >
+                Petunjuk Arah
+              </Button>
+            </Box>
+          </>
         )}
         <Box sx={{ display: "none" }}>
           <ReactPlayer
@@ -299,8 +424,8 @@ const styles = generateSxStyles({
   mainContent: {
     position: "relative",
     padding: 24,
-    paddingTop: 100,
-    paddingBottom: 48,
+    paddingTop: 150,
+    paddingBottom: 16,
     textAlign: "center",
     width: "100%",
   },
@@ -314,8 +439,9 @@ const styles = generateSxStyles({
     marginBottom: 32,
   },
   mainPhoto: {
-    width: 90,
+    width: 128,
     margin: "auto",
+    marginBottom: 16,
   },
   mainTitle: {
     marginBottom: 16,
@@ -328,13 +454,17 @@ const styles = generateSxStyles({
     marginBottom: 24,
   },
   mainEvent: {
-    paddingTop: 96,
-    paddingBottom: 48,
+    paddingTop: 48,
+    paddingBottom: 16,
   },
   mainEventItem: {
-    marginBottom: 48,
+    padding: "24px 16px",
+    borderRadius: 12,
+    background: "#FFFFFF50",
+    maxWidth: 300,
+    margin: "48px auto",
   },
-  mainControl: {
+  control: {
     position: "fixed",
     top: 0,
     right: 0,
@@ -369,6 +499,29 @@ const styles = generateSxStyles({
   coverContent: {
     marginBottom: "15vh",
     textAlign: "center",
+  },
+  gallery: {
+    position: "relative",
+  },
+  galleryAwan: {
+    height: 150,
+    overflow: "hidden",
+    position: "absolute",
+    background: theme.colors?.background,
+    transform: "rotate(180deg)",
+  },
+  galleryContent: {
+    position: "relative",
+    padding: 16,
+    paddingTop: 150,
+    paddingBottom: 100,
+    textAlign: "center",
+    maxWidth: 900,
+    margin: "auto",
+  },
+  galleryItem: {
+    borderRadius: 4,
+    overflow: "hidden",
   },
 });
 //#endregion

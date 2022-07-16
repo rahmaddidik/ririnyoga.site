@@ -9,6 +9,9 @@ export const theme: MantineThemeOverride = {
   primaryColor: "orange",
   defaultRadius: 0,
   fontFamily: "'Quicksand', sans-serif",
+  fontSizes: {
+    xl: 24,
+  },
   headings: {
     fontFamily: "'Brittany Signature', sans-serif",
     fontWeight: "400",
