@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Button, Text, Title } from "@mantine/core";
+import { ActionIcon, Box, Button, Grid, Text, Title } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -24,6 +24,7 @@ import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Image from "next/image";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -243,7 +244,7 @@ const Home: NextPage = () => {
                     <Text size={mobile ? "sm" : "md"}>
                       Ahad Legi, 24 Juli 2022
                     </Text>
-                    <Text size={mobile ? "sm" : "md"}>09.00 WIB</Text>
+                    <Text size={mobile ? "sm" : "md"}>08.00 WIB</Text>
                     <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
                   </Box>
                   <Box sx={styles.mainEventItem}>
@@ -266,9 +267,12 @@ const Home: NextPage = () => {
                 <Icon.AwanSection />
               </Box>
               <Box sx={styles.galleryContent}>
-                <Text size="xl" color="title" mb={48}>
-                  <strong>ALBUM</strong> FOTO
-                </Text>
+                <Title
+                  mb={48}
+                  sx={{ color: theme.colors?.title, fontWeight: 500 }}
+                >
+                  Album Foto
+                </Title>
                 <PhotoAlbum
                   layout="columns"
                   photos={photos}
@@ -286,6 +290,49 @@ const Home: NextPage = () => {
                 />
               </Box>
             </Box>
+            <Box sx={styles.main}>
+              <Box sx={styles.mainAwan}>
+                <Icon.AwanSection />
+              </Box>
+              <Box sx={styles.mainContent}>
+                <Title
+                  mb={48}
+                  sx={{ color: theme.colors?.title, fontWeight: 500 }}
+                >
+                  Covid-19
+                </Title>
+                <Text
+                  size={mobile ? "sm" : "md"}
+                  mx="auto"
+                  sx={{ maxWidth: 600 }}
+                >
+                  Untuk menjaga acara pernikahan ini aman dari resiko penularan
+                  Covid-19, mohon simak anjuran berikut sebelum anda hadir ke
+                  lokasi:
+                </Text>
+                <Grid justify="center" sx={styles.info}>
+                  <Grid.Col sx={styles.infoItem}>
+                    <Image
+                      src="/images/do.png"
+                      alt=""
+                      width={400}
+                      height={175}
+                      layout="responsive"
+                    />
+                  </Grid.Col>
+                  <Grid.Col sx={styles.infoItem}>
+                    <Image
+                      src="/images/don't.png"
+                      alt=""
+                      width={400}
+                      height={175}
+                      layout="responsive"
+                    />
+                  </Grid.Col>
+                </Grid>
+              </Box>
+            </Box>
+            <Box sx={styles.footer} />
             <Box sx={styles.control}>
               <ActionIcon onClick={() => setPlay(!play)}>
                 {play ? <PlayerPause size={24} /> : <PlayerPlay size={24} />}
@@ -404,7 +451,7 @@ const styles = generateSxStyles({
   mainContent: {
     position: "relative",
     padding: 24,
-    paddingTop: 150,
+    paddingTop: 300,
     paddingBottom: 16,
     textAlign: "center",
     width: "100%",
@@ -487,7 +534,7 @@ const styles = generateSxStyles({
     position: "relative",
   },
   galleryAwan: {
-    height: 150,
+    height: 300,
     overflow: "hidden",
     position: "absolute",
     background: theme.colors?.background,
@@ -496,7 +543,7 @@ const styles = generateSxStyles({
   galleryContent: {
     position: "relative",
     padding: 16,
-    paddingTop: 150,
+    paddingTop: 300,
     paddingBottom: 150,
     textAlign: "center",
     maxWidth: 900,
@@ -505,6 +552,17 @@ const styles = generateSxStyles({
   galleryItem: {
     borderRadius: 4,
     overflow: "hidden",
+  },
+  info: {
+    marginTop: 24,
+    marginBottom: 24,
+  },
+  infoItem: {
+    maxWidth: 500,
+  },
+  footer: {
+    height: 150,
+    background: theme.colors?.backgroundLight,
   },
 });
 //#endregion
