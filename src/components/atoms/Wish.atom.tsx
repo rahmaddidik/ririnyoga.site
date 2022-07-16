@@ -1,6 +1,10 @@
 import React from "react";
 
-const Wish = ({ name }) => {
+interface Props {
+  name: string;
+}
+
+const Wish: React.FC<Props> = ({ name }: Props) => {
   return (
     <div className="wish-message">
       HAPPY WEDDING <span className="highlight">{name.toUpperCase()}</span> !!!
