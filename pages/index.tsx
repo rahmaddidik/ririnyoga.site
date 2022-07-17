@@ -242,33 +242,20 @@ const Home: NextPage = () => {
         {!open && (
           <Box sx={styles.cover}>
             <Box sx={styles.coverContent}>
-              {!name && (
-                <Box sx={[styles.coverLabel, { paddingBottom: 16 }]}>
-                  <Text size={mobile ? "lg" : "xl"} color="title" weight={700}>
-                    Maaf, Anda tidak diundang
+              {name && (
+                <Box sx={styles.coverLabel}>
+                  <Text size={mobile ? "sm" : "md"}>
+                    Kepada Yth Bpk/Ibu/Sdr/i:
                   </Text>
+                  <Text size={mobile ? "lg" : "xl"} color="title" weight={700}>
+                    {(name as string).replace(/([A-Z])/g, " $1").trim()}
+                  </Text>
+                  <Text size={mobile ? "sm" : "md"}>di tempat</Text>
                 </Box>
               )}
-              {name && (
-                <>
-                  <Box sx={styles.coverLabel}>
-                    <Text size={mobile ? "sm" : "md"}>
-                      Kepada Yth Bpk/Ibu/Sdr/i:
-                    </Text>
-                    <Text
-                      size={mobile ? "lg" : "xl"}
-                      color="title"
-                      weight={700}
-                    >
-                      {(name as string).replace(/([A-Z])/g, " $1").trim()}
-                    </Text>
-                    <Text size={mobile ? "sm" : "md"}>di tempat</Text>
-                  </Box>
-                  <Button radius="xl" onClick={openInvitation}>
-                    BUKA UNDANGAN
-                  </Button>
-                </>
-              )}
+              <Button radius="xl" onClick={openInvitation}>
+                BUKA UNDANGAN
+              </Button>
             </Box>
           </Box>
         )}
