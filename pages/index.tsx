@@ -320,12 +320,11 @@ const Home: NextPage = () => {
                       <strong>RESEPSI</strong> PERNIKAHAN
                     </Text>
                     <Text size={mobile ? "sm" : "md"}>
-                      Ahad Legi, 24 Juli 2022
+                      Sabtu, 24 September 2022
                     </Text>
                     <Text size={mobile ? "sm" : "md"}>
-                      13.00-14.00 WIB & 14.00-15.00 WIB
+                      Rumah Bapak Imam Chamdani
                     </Text>
-                    <Text size={mobile ? "sm" : "md"}>Rumah Bapak Sutarjo</Text>
                   </Grid.Col>
                 </Grid>
               </Box>
@@ -400,7 +399,7 @@ const Home: NextPage = () => {
                 </Grid>
               </Box>
             </Box>
-            <Box
+            {/* <Box
               sx={{
                 padding: "48px 16px",
                 background: theme.colors?.backgroundLight,
@@ -413,7 +412,7 @@ const Home: NextPage = () => {
               >
                 Buku Tamu
               </Title>
-            </Box>
+            </Box> */}
             <Box sx={styles.footer}>
               <Image
                 src="/images/footer.png"
@@ -434,7 +433,7 @@ const Home: NextPage = () => {
                 )}
               </ActionIcon>
             </Box>
-            <Box sx={styles.fab}>
+            {/* <Box sx={styles.fab}>
               <Button
                 component="a"
                 href="https://www.google.com/maps/dir//Mebel+Rahmad+Jati,+Blali+RT005,+Karangasem,+Seloharjo,+Kec.+Pundong,+Kabupaten+Bantul,+Daerah+Istimewa+Yogyakarta+55771/@-7.9724074,110.3427968,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x2e7babd7fea00de7:0xc6a122fd8ba490d3!2m2!1d110.3341464!2d-7.9872266!3e0"
@@ -444,7 +443,7 @@ const Home: NextPage = () => {
               >
                 Petunjuk Arah
               </Button>
-            </Box>
+            </Box> */}
           </>
         )}
         <Box sx={{ display: "none" }}>
