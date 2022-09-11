@@ -44,7 +44,7 @@ const Home: NextPage = () => {
   });
 
   const day = 24;
-  const month = 7;
+  const month = 9;
 
   // get current time
   const currentTime = new Date();
@@ -400,6 +400,20 @@ const Home: NextPage = () => {
                 </Grid>
               </Box>
             </Box>
+            <Box
+              sx={{
+                padding: "48px 16px",
+                background: theme.colors?.backgroundLight,
+                textAlign: "center",
+              }}
+            >
+              <Title
+                mb={48}
+                sx={{ color: theme.colors?.title, fontWeight: 500 }}
+              >
+                Buku Tamu
+              </Title>
+            </Box>
             <Box sx={styles.footer}>
               <Image
                 src="/images/footer.png"
@@ -435,7 +449,7 @@ const Home: NextPage = () => {
         )}
         <Box sx={{ display: "none" }}>
           <ReactPlayer
-            muted={muted}
+            muted={true}
             playing={play}
             loop
             url="https://www.youtube.com/watch?v=1WCIrw85zbQ"
