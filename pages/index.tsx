@@ -433,17 +433,17 @@ const Home: NextPage = () => {
                 )}
               </ActionIcon>
             </Box>
-            {/* <Box sx={styles.fab}>
+            <Box sx={styles.fab}>
               <Button
                 component="a"
-                href="https://www.google.com/maps/dir//Mebel+Rahmad+Jati,+Blali+RT005,+Karangasem,+Seloharjo,+Kec.+Pundong,+Kabupaten+Bantul,+Daerah+Istimewa+Yogyakarta+55771/@-7.9724074,110.3427968,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x2e7babd7fea00de7:0xc6a122fd8ba490d3!2m2!1d110.3341464!2d-7.9872266!3e0"
+                href="https://www.google.com/maps/dir//3.570229,99.042136/@3.570229,99.042136,17z/data=!4m2!4m1!3e0"
                 leftIcon={<Map size={14} />}
                 radius="xl"
                 size="md"
               >
                 Petunjuk Arah
               </Button>
-            </Box> */}
+            </Box>
           </>
         )}
         <Box sx={{ display: "none" }}>
