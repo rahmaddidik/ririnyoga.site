@@ -463,16 +463,16 @@ const Home: NextPage = () => {
                 Petunjuk Arah
               </Button>
             </Box>
+            <Box sx={{ display: "none" }}>
+              <ReactPlayer
+                muted={muted}
+                playing={play}
+                loop
+                url="https://www.youtube.com/watch?v=1WCIrw85zbQ"
+              />
+            </Box>
           </>
         )}
-        <Box sx={{ display: "none" }}>
-          <ReactPlayer
-            muted={muted}
-            playing={play}
-            loop
-            url="https://www.youtube.com/watch?v=1WCIrw85zbQ"
-          />
-        </Box>
       </Box>
     </>
   );
