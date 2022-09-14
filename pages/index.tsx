@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Button, Grid, Text, Title } from "@mantine/core";
+import { ActionIcon, Box, Button, Center, Grid, Text, Title } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -355,6 +355,27 @@ const Home: NextPage = () => {
                   // enable optional lightbox plugins
                   plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
                 />
+                <Title
+                  mt={100}
+                  mb={48}
+                  sx={{ color: theme.colors?.title, fontWeight: 500 }}
+                >
+                  Video Pernikahan
+                </Title>
+                <Center>
+                  <ReactPlayer
+                    url="https://youtu.be/xonyCOGALYs"
+                    controls
+                    onPlay={() => {
+                      setPlay(false);
+                      setMuted(true);
+                    }}
+                    onPause={() => {
+                      setPlay(true);
+                      setMuted(false);
+                    }}
+                  />
+                </Center>
               </Box>
             </Box>
             <Box sx={styles.main}>
@@ -399,20 +420,6 @@ const Home: NextPage = () => {
                 </Grid>
               </Box>
             </Box>
-            {/* <Box
-              sx={{
-                padding: "48px 16px",
-                background: theme.colors?.backgroundLight,
-                textAlign: "center",
-              }}
-            >
-              <Title
-                mb={48}
-                sx={{ color: theme.colors?.title, fontWeight: 500 }}
-              >
-                Buku Tamu
-              </Title>
-            </Box> */}
             <Box sx={styles.footer}>
               <Image
                 src="/images/footer.png"
@@ -448,7 +455,7 @@ const Home: NextPage = () => {
         )}
         <Box sx={{ display: "none" }}>
           <ReactPlayer
-            muted={true}
+            muted={muted}
             playing={play}
             loop
             url="https://www.youtube.com/watch?v=1WCIrw85zbQ"
