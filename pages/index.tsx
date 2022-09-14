@@ -1,4 +1,12 @@
-import { ActionIcon, Box, Button, Center, Grid, Text, Title } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Center,
+  Grid,
+  Text,
+  Title,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -371,6 +379,10 @@ const Home: NextPage = () => {
                       setMuted(true);
                     }}
                     onPause={() => {
+                      setPlay(true);
+                      setMuted(false);
+                    }}
+                    onEnded={() => {
                       setPlay(true);
                       setMuted(false);
                     }}
